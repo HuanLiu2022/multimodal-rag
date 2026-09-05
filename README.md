@@ -66,7 +66,8 @@ The overall workflow consists of the following stages:
         Generation
             │
             ▼
-        Evaluation ```
+        Evaluation
+```
 
 ## Model Training
 
