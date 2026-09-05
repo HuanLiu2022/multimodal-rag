@@ -1,7 +1,5 @@
 # Multimodal RAG for Historical Artifacts
 
-**Master's Thesis · University of Zurich**
-
 ## Overview
 
 This project explores multimodal RAG-based approaches for generating metadata and descriptions of historical artifacts using vision-language models and large language models.
