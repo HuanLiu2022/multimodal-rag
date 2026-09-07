@@ -85,16 +85,16 @@ Selected experiments achieved **90%+ classification accuracy** and **BERTScores 
 
 ```text
 master thesis/
-├── README
+├── README.md
 ├── data_preparation.ipynb
 ├── RAG.ipynb
-├── fine_tuning_and_evaluation
-  ├── BLIP2-Flan-T5-XL_Multitask_MET.ipynb
-  ├── BLIP2-Flan-T5-XL_Multitask_UZH.ipynb
-  ├── GPT-4o_Classifier_MET.ipynb
-  ├── GPT-4o_Classifier_UZH..ipynb
-  ├── GPT-4o_Describer_MET.ipynb
-  └── GPT-4o_Describer_UZH.ipynb
+└── fine_tuning_and_evaluation/
+    ├── BLIP2-Flan-T5-XL_Multitask_MET.ipynb
+    ├── BLIP2-Flan-T5-XL_Multitask_UZH.ipynb
+    ├── GPT-4o_Classifier_MET.ipynb
+    ├── GPT-4o_Classifier_UZH.ipynb
+    ├── GPT-4o_Describer_MET.ipynb
+    └── GPT-4o_Describer_UZH.ipynb
 ```
 
 ## Technologies
