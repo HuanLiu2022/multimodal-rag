@@ -19,7 +19,8 @@ The project uses two historical artifact collections:
 - **Archäologische Sammlung UZH** – German-language artifact collection
 - **The Metropolitan Museum of Art (The Met)** – English-language artifact collection
 
-The final UZH dataset contains 495 artifacts and 4,675 images. A subset of approximately 5,752 artifacts from The Met was used for the BLIP/BLIP2 experiments.
+The final UZH dataset contains 495 artifacts and 4,675 images. 
+The final MET dataset contains 5,727 artifacts and 8,428 images. 
 
 ## Project Pipeline
 
