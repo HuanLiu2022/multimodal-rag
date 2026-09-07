@@ -1,11 +1,8 @@
-````markdown
 # Multimodal RAG for Historical Artifacts
 
 ## Overview
 
-This project explores multimodal approaches for generating metadata and descriptions of historical artifacts using artifact images, textual knowledge, Vision-Language Models (VLMs), and Large Language Models (LLMs).
-
-The project was developed as part of my Master's thesis in Computational Linguistics at the University of Zurich.
+This project explores multimodal approaches for generating metadata and descriptions of historical artifacts using artifact images, textual knowledge, multimodal models, and retrieval-augmented generation.
 
 ## Objectives
 
@@ -19,7 +16,7 @@ The project was developed as part of my Master's thesis in Computational Linguis
 
 The project uses two historical artifact collections:
 
-- **University of Zurich (UZH)** – German-language artifact collection
+- **Archäologische Sammlung UZH** – German-language artifact collection
 - **The Metropolitan Museum of Art (The Met)** – English-language artifact collection
 
 The final UZH dataset contains 495 artifacts and 4,675 images. A subset of approximately 5,752 artifacts from The Met was used for the BLIP/BLIP2 experiments.
@@ -36,9 +33,6 @@ Data Preparation
 Model Fine-tuning
      │
      ▼
-VLMs / LLMs
-     │
-     ▼
 RAG & Knowledge Retrieval
      │
      ▼
@@ -52,10 +46,9 @@ Evaluation
 
 The project experiments with:
 
-- CLIP
-- BLIP
-- BLIP2 with Flan-T5-XL
+- BLIP2-Flan-T5-XL
 - GPT-4o
+- CLIP
 - LoRA fine-tuning
 - Retrieval-Augmented Generation (RAG)
 - FAISS
@@ -92,32 +85,26 @@ Selected experiments achieved **90%+ classification accuracy** and **BERTScores 
 
 ```text
 master thesis/
+├── README
 ├── data_preparation.ipynb
 ├── RAG.ipynb
-├── BLIP2-Flan-T5-XL_Multitask_MET.ipynb
-├── BLIP2-Flan-T5-XL_Multitask_UZH.ipynb
-├── GPT-4o_Classifier_MET.ipynb
-├── GPT-4o_Classifier_UZH..ipynb
-├── GPT-4o_Describer_MET.ipynb
-├── GPT-4o_Describer_UZH.ipynb
-└── cl_thesis_liuhuan_22739817.pdf
+├── fine_tuning_and_evaluation
+  ├── BLIP2-Flan-T5-XL_Multitask_MET.ipynb
+  ├── BLIP2-Flan-T5-XL_Multitask_UZH.ipynb
+  ├── GPT-4o_Classifier_MET.ipynb
+  ├── GPT-4o_Classifier_UZH..ipynb
+  ├── GPT-4o_Describer_MET.ipynb
+  └── GPT-4o_Describer_UZH.ipynb
 ```
 
 ## Technologies
 
 **Programming:** Python, PyTorch, Hugging Face Transformers
 
-**Models:** CLIP, BLIP, BLIP2, Flan-T5, GPT-4o
+**Models:** CLIP, BLIP, BLIP2-Flan-T5-xl, GPT-4o
 
 **RAG & Retrieval:** FAISS, Sentence Transformers, OpenAI Embeddings, LangChain
 
 **Fine-tuning:** LoRA, OpenAI Fine-tuning API
 
 **Environment:** Google Colab, NVIDIA A100-SXM4-40GB
-
-## Thesis
-
-The complete Master's thesis is included in this repository:
-
-`cl_thesis_liuhuan_22739817.pdf`
-````
