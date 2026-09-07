@@ -1,100 +1,123 @@
+````markdown
 # Multimodal RAG for Historical Artifacts
 
 ## Overview
 
-This project explores multimodal RAG-based approaches for generating metadata and descriptions of historical artifacts using vision-language models and large language models.
+This project explores multimodal approaches for generating metadata and descriptions of historical artifacts using artifact images, textual knowledge, Vision-Language Models (VLMs), and Large Language Models (LLMs).
 
-The goal is to combine visual information, existing artifact metadata, and external knowledge to generate informative and context-aware descriptions.
+The project was developed as part of my Master's thesis in Computational Linguistics at the University of Zurich.
 
-## Approach
+## Objectives
 
-The project combines several components:
+- Generate structured metadata from historical artifact images
+- Generate detailed artifact descriptions
+- Combine visual and textual information using RAG
+- Fine-tune multimodal and language models
+- Evaluate model performance
 
-- **Vision-Language Models** for understanding historical artifact images
-- **Large Language Models** for metadata and description generation
-- **Retrieval-Augmented Generation (RAG)** for incorporating relevant external knowledge
-- **Embedding-based Retrieval** for finding relevant information from a knowledge base
-- **Model Fine-tuning** to adapt models to the target domain
-- **Automated Evaluation** using classification and text-generation metrics
+## Datasets
 
-## Models & Technologies
+The project uses two historical artifact collections:
 
-- Python
-- PyTorch
-- Hugging Face Transformers
+- **University of Zurich (UZH)** – German-language artifact collection
+- **The Metropolitan Museum of Art (The Met)** – English-language artifact collection
+
+The final UZH dataset contains 495 artifacts and 4,675 images. A subset of approximately 5,752 artifacts from The Met was used for the BLIP/BLIP2 experiments.
+
+## Project Pipeline
+
+```text
+Artifact Data
+     │
+     ▼
+Data Preparation
+     │
+     ▼
+Model Fine-tuning
+     │
+     ▼
+VLMs / LLMs
+     │
+     ▼
+RAG & Knowledge Retrieval
+     │
+     ▼
+Metadata & Description Generation
+     │
+     ▼
+Evaluation
+```
+
+## Models & Methods
+
+The project experiments with:
+
+- CLIP
 - BLIP
-- BLIP-2
-- Flan-T5
+- BLIP2 with Flan-T5-XL
 - GPT-4o
-- LoRA
-- LangChain
+- LoRA fine-tuning
+- Retrieval-Augmented Generation (RAG)
 - FAISS
 - Sentence Transformers
 - OpenAI Embeddings
 
-## Datasets
+### RAG
 
-The project uses historical artifact collections from two sources:
+The RAG pipeline retrieves relevant information from external historical literature and combines it with artifact images and prompts for multimodal generation.
 
-- **University of Zurich (UZH)** — German-language historical artifact data
-- **The Metropolitan Museum of Art (The Met)** — English-language artifact data
+CLIP (ViT-B/32) was initially explored for multimodal retrieval. However, its **77-token text context length** limited the retrieval of longer bibliographic texts. Therefore, the main RAG pipeline used **OpenAI `text-embedding-3-large`** for text retrieval instead.
 
-The datasets contain artifact images and associated metadata used for model training, retrieval, and evaluation.
+## Fine-tuning
 
-## Pipeline
+**BLIP2-Flan-T5-XL** was fine-tuned using LoRA, with the vision encoder and Q-Former frozen.
 
-The overall workflow consists of the following stages:
-
-```text
-     Artifact Images
-            │
-            ▼
-     Data Preparation
-            │
-            ▼
-   Knowledge Retrieval
-  (Embeddings + FAISS)
-            │
-            ▼
-   Multimodal Generation
-(BLIP2-Flan-t5-xl / GPT-4o)
-            │
-            ▼
- Metadata & Description
-        Generation
-            │
-            ▼
-        Evaluation
-```
-
-## Model Training
-
-BLIP-2 with Flan-T5 was fine-tuned using **LoRA**, while the vision encoder and Q-Former were kept frozen.
-
-The project also explored GPT-4o-based approaches for multimodal generation and evaluated the generated descriptions against reference data.
+**GPT-4o** was also fine-tuned using the OpenAI API. The workflow included preparing JSONL training data, creating a fine-tuning job, running inference, and evaluating the results.
 
 ## Evaluation
 
-Model performance was evaluated using both classification and text-generation metrics, including:
+The project uses:
 
 - Accuracy
+- Precision
+- Recall
+- F1-score
 - METEOR
 - ROUGE
 - BERTScore
 
-## Evaluation Results
+Selected experiments achieved **90%+ classification accuracy** and **BERTScores of up to approximately 0.84**.
 
-The experiments achieved classification accuracy above **90%**, with BERTScore values of up to approximately **0.84**, depending on the dataset and model configuration.
-
-The results demonstrate the potential of multimodal and retrieval-augmented approaches for generating metadata and descriptions of historical artifacts.
-
-## Project Structure
+## Repository Structure
 
 ```text
-multimodal-rag/
-│
-├── notebooks/
-├── results/
-├── README.md
-└── requirements.txt
+master thesis/
+├── data_preparation.ipynb
+├── RAG.ipynb
+├── BLIP2-Flan-T5-XL_Multitask_MET.ipynb
+├── BLIP2-Flan-T5-XL_Multitask_UZH.ipynb
+├── GPT-4o_Classifier_MET.ipynb
+├── GPT-4o_Classifier_UZH..ipynb
+├── GPT-4o_Describer_MET.ipynb
+├── GPT-4o_Describer_UZH.ipynb
+└── cl_thesis_liuhuan_22739817.pdf
 ```
+
+## Technologies
+
+**Programming:** Python, PyTorch, Hugging Face Transformers
+
+**Models:** CLIP, BLIP, BLIP2, Flan-T5, GPT-4o
+
+**RAG & Retrieval:** FAISS, Sentence Transformers, OpenAI Embeddings, LangChain
+
+**Fine-tuning:** LoRA, OpenAI Fine-tuning API
+
+**Environment:** Google Colab, NVIDIA A100-SXM4-40GB
+
+## Thesis
+
+The complete Master's thesis is included in this repository:
+
+`cl_thesis_liuhuan_22739817.pdf`
+````
